@@ -15,6 +15,8 @@ MODEL = 'cnn'  # default: 'hog', other one can be 'cnn' - CUDA accelerated (if a
 
 video = cv2.VideoCapture(0)
 
+next_id = 0
+
 
 # Returns (R, G, B) from name
 def name_to_color(name):
@@ -27,8 +29,6 @@ def name_to_color(name):
 print('Loading known faces...')
 known_faces = []
 known_names = []
-
-next_id = 0
 
 # We oranize known faces as subfolders of KNOWN_FACES_DIR
 # Each subfolder's name becomes our label (name)
@@ -51,7 +51,7 @@ for name in os.listdir(KNOWN_FACES_DIR):
         known_names.append(int(name))
 
     if len(known_names) > 0:
-        next_id = mac(known_names) + 1
+        next_id = max(known_names) + 1
     else:
         next_id = 0
 
