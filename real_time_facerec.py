@@ -14,22 +14,39 @@ import numpy as np
 # Get a reference to webcam #0 (the default one)
 video_capture = cv2.VideoCapture(0)
 
+aktar_image = face_recognition.load_image_file("Aktar_Zaman_1.jpg")
+aktar_image_encoding = face_recognition.face_encodings(aktar_image)[0]
+
 # Load a sample picture and learn how to recognize it.
-obama_image = face_recognition.load_image_file("obama.jpg")
+obama_image = face_recognition.load_image_file("Barak_Obama.jpg")
 obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
 
 # Load a second sample picture and learn how to recognize it.
-biden_image = face_recognition.load_image_file("biden.jpg")
-biden_face_encoding = face_recognition.face_encodings(biden_image)[0]
+ashraf_image = face_recognition.load_image_file("Ashraf_Zaman.jpg")
+ashraf_face_encoding = face_recognition.face_encodings(ashraf_image)[0]
+
+fariha_image = face_recognition.load_image_file("Fariha_Choudhury.jpeg")
+fariha_image_encoding = face_recognition.face_encodings(fariha_image)[0]
+
+# Load a third sample picture and learn how to recognize it.
+# rahima_image = face_recognition.load_image_file("Rahima_Mahmood.jpg")
+# rahima_face_encoding = face_recognition.face_encodings(rahima_image)[0]
+
 
 # Create arrays of known face encodings and their names
 known_face_encodings = [
+    aktar_image_encoding,
     obama_face_encoding,
-    biden_face_encoding
+    ashraf_face_encoding,
+    fariha_image_encoding
+    # rahima_face_encoding,
 ]
 known_face_names = [
-    "Barack Obama",
-    "Joe Biden"
+    "Aktar Zaman",
+     "Barak Obama",
+    "Ashraf Zaman"
+    "Fariha Choudhury"
+    # "Rahima Mahmood"
 ]
 
 # Initialize some variables
@@ -72,6 +89,11 @@ while True:
                 name = known_face_names[best_match_index]
 
             face_names.append(name)
+
+            # if len(known_names) > 0:
+            #     next_id = max(known_names) + 1
+            # else:
+            #     next_id = 0
 
     process_this_frame = not process_this_frame
 
