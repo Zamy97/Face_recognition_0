@@ -25,7 +25,7 @@ obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
 ashraf_image = face_recognition.load_image_file("Ashraf_Zaman.jpg")
 ashraf_face_encoding = face_recognition.face_encodings(ashraf_image)[0]
 
-fariha_image = face_recognition.load_image_file("Fariha_Choudhury.jpeg")
+fariha_image = face_recognition.load_image_file("Fariha_Choudhury.jpg")
 fariha_image_encoding = face_recognition.face_encodings(fariha_image)[0]
 
 # Load a third sample picture and learn how to recognize it.
