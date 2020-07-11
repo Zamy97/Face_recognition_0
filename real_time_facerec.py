@@ -106,11 +106,16 @@ while True:
             best_match_index = np.argmin(face_distances)
             if matches[best_match_index]:
                 name = known_face_names[best_match_index]
-                # gretting = "কিতা খবর" + str(name) + "বালা আছ নি"
-                gretting = "What's up" + str(name) + "How are you doing today?"
-                gretting_gTTS = gTTS(text=gretting, lang=language, slow=False)
-                gretting_gTTS.save("Grettings.mp3")
-                os.system("mpg321 Grettings.mp3")
+                if str(name) == "Aakhtarr zaman":
+                    bengali_gretting = "কিতা খবর" + str(name) + "বালা আছ নি"
+                    gretting_gTTS = gTTS(text=bengali_gretting, lang='bn', slow=False)
+                    gretting_gTTS.save("Bengali_Grettings.mp3")
+                    os.system("mpg321 Bengali_Grettings.mp3")
+                else:
+                    gretting = "What's up" + str(name) + "How are you doing today?"
+                    gretting_gTTS = gTTS(text=gretting, lang=language, slow=False)
+                    gretting_gTTS.save("Grettings.mp3")
+                    os.system("mpg321 Grettings.mp3")
 
             face_names.append(name)
 
