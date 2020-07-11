@@ -1,64 +1,27 @@
 import face_recognition
 import cv2
 import numpy as np
-from gtts import gTTS
-import os
-
-# This is a demo of running face recognition on live video from your webcam. It's a little more complicated than the
-# other example, but it includes some basic performance tweaks to make things run a lot faster:
-#   1. Process each video frame at 1/4 resolution (though still display it at full resolution)
-#   2. Only detect faces in every other frame of video.
-
-# PLEASE NOTE: This example requires OpenCV (the `cv2` library) to be installed only to read from your webcam.
-# OpenCV is *not* required to use the face_recognition library. It's only required if you want to run this
-# specific demo. If you have trouble installing it, try any of the other demos that don't require it instead.
+from espeak import espeak
 
 # Get a reference to webcam #0 (the default one)
 video_capture = cv2.VideoCapture(0)
-
-aktar_image = face_recognition.load_image_file("Aktar_Zaman_1.jpg")
-aktar_image_encoding = face_recognition.face_encodings(aktar_image)[0]
-
+#list of known family members for 
 # Load a sample picture and learn how to recognize it.
-obama_image = face_recognition.load_image_file("Barak_Obama.jpg")
-obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
+ashwini_image = face_recognition.load_image_file("ash.jpg")
+ashwini_face_encoding = face_recognition.face_encodings(ashwini_image)[0]
 
 # Load a second sample picture and learn how to recognize it.
-ashraf_image = face_recognition.load_image_file("Ashraf_Zaman.jpg")
-ashraf_face_encoding = face_recognition.face_encodings(ashraf_image)[0]
-
-fariha_image = face_recognition.load_image_file("Fariha_Choudhury.jpg")
-fariha_image_encoding = face_recognition.face_encodings(fariha_image)[0]
-
-aminul_image = face_recognition.load_image_file("Aminul_Islam.jpg")
-aminul_image_encoding = face_recognition.face_encodings(aminul_image)[0]
-
-bushra_image = face_recognition.load_image_file("Amina_Bushra.jpg")
-bushra_image_encoding = face_recognition.face_encodings(bushra_image)[0]
-
-# Load a third sample picture and learn how to recognize it.
-# rahima_image = face_recognition.load_image_file("Rahima_Mahmood.jpg")
-# rahima_face_encoding = face_recognition.face_encodings(rahima_image)[0]
-
+biden_image = face_recognition.load_image_file("biden.jpg")
+biden_face_encoding = face_recognition.face_encodings(biden_image)[0]
 
 # Create arrays of known face encodings and their names
 known_face_encodings = [
-    aktar_image_encoding,
-    obama_face_encoding,
-    ashraf_face_encoding,
-    fariha_image_encoding,
-    aminul_image_encoding,
-    bushra_image_encoding
-    # rahima_face_encoding,
+    ashwini_face_encoding,
+    biden_face_encoding
 ]
 known_face_names = [
-    "আখতার জামান",
-     "Barak Obama",
-    "Ashraf Zaman",
-    "Fariha Choudhury",
-    "Aminul Islam",
-    "Amina Bushra"
-    # "Rahima Mahmood"
+    "Ashwini sinha",
+    "Joe Biden"
 ]
 
 # Initialize some variables
@@ -66,8 +29,6 @@ face_locations = []
 face_encodings = []
 face_names = []
 process_this_frame = True
-# Language in which you want to convert
-language = 'bn'
 
 while True:
     # Grab a single frame of video
@@ -90,7 +51,7 @@ while True:
             # See if the face is a match for the known face(s)
             matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
             name = "Unknown"
-
+            
             # # If a match was found in known_face_encodings, just use the first one.
             # if True in matches:
             #     first_match_index = matches.index(True)
@@ -101,17 +62,12 @@ while True:
             best_match_index = np.argmin(face_distances)
             if matches[best_match_index]:
                 name = known_face_names[best_match_index]
-                gretting = "কিতা খবর" + str(name) + "বালা আছ নি"
-                gretting_gTTS = gTTS(text=gretting, lang=language, slow=False)
-                gretting_gTTS.save("Grettings.mp3")
-                os.system("mpg321 Grettings.mp3")
+                espeak.synth("Sommeone at Door named")
+                espeak.synth(name)
+                
 
             face_names.append(name)
-        
-            # if len(known_names) > 0:
-            #     next_id = max(known_names) + 1
-            # else:
-            #     next_id = 0
+            espeak.synth(name)
 
     process_this_frame = not process_this_frame
 
