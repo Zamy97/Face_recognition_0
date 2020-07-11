@@ -36,6 +36,9 @@ aminul_image_encoding = face_recognition.face_encodings(aminul_image)[0]
 bushra_image = face_recognition.load_image_file("Amina_Bushra.jpg")
 bushra_image_encoding = face_recognition.face_encodings(bushra_image)[0]
 
+
+hamza_image = face_recognition.load_image_file("Hamza_Ahmed.jpg")
+hamza_image_encoding = face_recognition.face_encodings(hamza_image)[0]
 # Load a third sample picture and learn how to recognize it.
 # rahima_image = face_recognition.load_image_file("Rahima_Mahmood.jpg")
 # rahima_face_encoding = face_recognition.face_encodings(rahima_image)[0]
@@ -48,16 +51,18 @@ known_face_encodings = [
     ashraf_face_encoding,
     fariha_image_encoding,
     aminul_image_encoding,
-    bushra_image_encoding
+    bushra_image_encoding,
+    hamza_image_encoding
     # rahima_face_encoding,
 ]
 known_face_names = [
-    "আখতার জামান",
+    "Aakhtarr zaman",
      "Barak Obama",
     "Ashraf Zaman",
     "Fariha Choudhury",
     "Aminul Islam",
-    "Amina Bushra"
+    "Drama Queen",
+    "Hamza Ahmed"
     # "Rahima Mahmood"
 ]
 
@@ -67,7 +72,7 @@ face_encodings = []
 face_names = []
 process_this_frame = True
 # Language in which you want to convert
-language = 'bn'
+language = 'en'
 
 while True:
     # Grab a single frame of video
@@ -101,13 +106,14 @@ while True:
             best_match_index = np.argmin(face_distances)
             if matches[best_match_index]:
                 name = known_face_names[best_match_index]
-                gretting = "কিতা খবর" + str(name) + "বালা আছ নি"
+                # gretting = "কিতা খবর" + str(name) + "বালা আছ নি"
+                gretting = "What's up" + str(name) + "How are you doing today?"
                 gretting_gTTS = gTTS(text=gretting, lang=language, slow=False)
                 gretting_gTTS.save("Grettings.mp3")
                 os.system("mpg321 Grettings.mp3")
 
             face_names.append(name)
-        
+
             # if len(known_names) > 0:
             #     next_id = max(known_names) + 1
             # else:
