@@ -28,6 +28,12 @@ ashraf_face_encoding = face_recognition.face_encodings(ashraf_image)[0]
 fariha_image = face_recognition.load_image_file("Fariha_Choudhury.jpg")
 fariha_image_encoding = face_recognition.face_encodings(fariha_image)[0]
 
+aminul_image = face_recognition.load_image_file("Aminul_Islam.jpg")
+aminul_image_encoding = face_recognition.face_encodings(aminul_image)[0]
+
+bushra_image = face_recognition.load_image_file("Amina_Bushra.jpg")
+bushra_image_encoding = face_recognition.face_encodings(bushra_image)[0]
+
 # Load a third sample picture and learn how to recognize it.
 # rahima_image = face_recognition.load_image_file("Rahima_Mahmood.jpg")
 # rahima_face_encoding = face_recognition.face_encodings(rahima_image)[0]
@@ -38,14 +44,18 @@ known_face_encodings = [
     aktar_image_encoding,
     obama_face_encoding,
     ashraf_face_encoding,
-    fariha_image_encoding
+    fariha_image_encoding,
+    aminul_image_encoding,
+    bushra_image_encoding
     # rahima_face_encoding,
 ]
 known_face_names = [
     "Aktar Zaman",
      "Barak Obama",
-    "Ashraf Zaman"
-    "Fariha Choudhury"
+    "Ashraf Zaman",
+    "Fariha Choudhury",
+    "Aminul Islam",
+    "Amina Bushra"
     # "Rahima Mahmood"
 ]
 
