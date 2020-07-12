@@ -2,7 +2,9 @@ import face_recognition
 import cv2
 import numpy as np
 from gtts import gTTS
+from notifier import SendText
 import os
+import time
 
 # This is a demo of running face recognition on live video from your webcam. It's a little more complicated than the
 # other example, but it includes some basic performance tweaks to make things run a lot faster:
@@ -71,8 +73,12 @@ face_locations = []
 face_encodings = []
 face_names = []
 process_this_frame = True
-# Language in which you want to convert
+# Language in which you want to convert the language to
 language = 'en'
+# the number you want to send the text to
+send_to = "+15106605453"
+# the number you want to send the text from
+sent_from = "+15104399655"
 
 while True:
     # Grab a single frame of video
@@ -106,16 +112,20 @@ while True:
             best_match_index = np.argmin(face_distances)
             if matches[best_match_index]:
                 name = known_face_names[best_match_index]
-                if str(name) == "Aakhtarr zaman":
-                    bengali_gretting = "কিতা খবর" + str(name) + "বালা আছ নি"
-                    gretting_gTTS = gTTS(text=bengali_gretting, lang='bn', slow=False)
-                    gretting_gTTS.save("Bengali_Grettings.mp3")
-                    os.system("mpg321 Bengali_Grettings.mp3")
-                else:
-                    gretting = "What's up" + str(name) + "How are you doing today?"
-                    gretting_gTTS = gTTS(text=gretting, lang=language, slow=False)
-                    gretting_gTTS.save("Grettings.mp3")
-                    os.system("mpg321 Grettings.mp3")
+                send_text_class_object = SendText(send_to, sent_from, "There's " + str(name) + " at your door")
+                send_text_class_object._send()
+                time.sleep(300)
+
+                # if str(name) == "Aakhtarr zaman":
+                #     bengali_gretting = "কিতা খবর" + str(name) + "বালা আছ নি"
+                #     gretting_gTTS = gTTS(text=bengali_gretting, lang='bn', slow=False)
+                #     gretting_gTTS.save("Bengali_Grettings.mp3")
+                #     os.system("mpg321 Bengali_Grettings.mp3")
+                # else:
+                #     gretting = "What's up" + str(name) + "How are you doing today?"
+                #     gretting_gTTS = gTTS(text=gretting, lang=language, slow=False)
+                #     gretting_gTTS.save("Grettings.mp3")
+                #     os.system("mpg321 Grettings.mp3")
 
             face_names.append(name)
 
