@@ -16,28 +16,28 @@ import os
 # Get a reference to webcam #0 (the default one)
 video_capture = cv2.VideoCapture(0)
 
-aktar_image = face_recognition.load_image_file("Aktar_Zaman_1.jpg")
+aktar_image = face_recognition.load_image_file("/Users/zamy/Desktop/Python_Projects/facial_recognition/Known_Images/Aktar_Zaman_1.jpg")
 aktar_image_encoding = face_recognition.face_encodings(aktar_image)[0]
 
 # Load a sample picture and learn how to recognize it.
-obama_image = face_recognition.load_image_file("Barak_Obama.jpg")
+obama_image = face_recognition.load_image_file("/Users/zamy/Desktop/Python_Projects/facial_recognition/Known_Images/Barak_Obama.jpg")
 obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
 
 # Load a second sample picture and learn how to recognize it.
-ashraf_image = face_recognition.load_image_file("Ashraf_Zaman.jpg")
+ashraf_image = face_recognition.load_image_file("/Users/zamy/Desktop/Python_Projects/facial_recognition/Known_Images/Ashraf_Zaman.jpg")
 ashraf_face_encoding = face_recognition.face_encodings(ashraf_image)[0]
 
-fariha_image = face_recognition.load_image_file("Fariha_Choudhury.jpg")
+fariha_image = face_recognition.load_image_file("/Users/zamy/Desktop/Python_Projects/facial_recognition/Known_Images/Fariha_Choudhury.jpg")
 fariha_image_encoding = face_recognition.face_encodings(fariha_image)[0]
 
-aminul_image = face_recognition.load_image_file("Aminul_Islam.jpg")
+aminul_image = face_recognition.load_image_file("/Users/zamy/Desktop/Python_Projects/facial_recognition/Known_Images/Aminul_Islam.jpg")
 aminul_image_encoding = face_recognition.face_encodings(aminul_image)[0]
 
-bushra_image = face_recognition.load_image_file("Amina_Bushra.jpg")
+bushra_image = face_recognition.load_image_file("/Users/zamy/Desktop/Python_Projects/facial_recognition/Known_Images/Amina_Bushra.jpg")
 bushra_image_encoding = face_recognition.face_encodings(bushra_image)[0]
 
 
-hamza_image = face_recognition.load_image_file("Hamza_Ahmed.jpg")
+hamza_image = face_recognition.load_image_file("/Users/zamy/Desktop/Python_Projects/facial_recognition/Known_Images/Hamza_Ahmed.jpg")
 hamza_image_encoding = face_recognition.face_encodings(hamza_image)[0]
 # Load a third sample picture and learn how to recognize it.
 # rahima_image = face_recognition.load_image_file("Rahima_Mahmood.jpg")
