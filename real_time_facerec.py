@@ -112,20 +112,19 @@ while True:
             best_match_index = np.argmin(face_distances)
             if matches[best_match_index]:
                 name = known_face_names[best_match_index]
-                send_text_class_object = SendText(send_to, sent_from, "There's " + str(name) + " at your door")
-                send_text_class_object._send()
-                time.sleep(300)
-
-                # if str(name) == "Aakhtarr zaman":
-                #     bengali_gretting = "কিতা খবর" + str(name) + "বালা আছ নি"
-                #     gretting_gTTS = gTTS(text=bengali_gretting, lang='bn', slow=False)
-                #     gretting_gTTS.save("Bengali_Grettings.mp3")
-                #     os.system("mpg321 Bengali_Grettings.mp3")
-                # else:
-                #     gretting = "What's up" + str(name) + "How are you doing today?"
-                #     gretting_gTTS = gTTS(text=gretting, lang=language, slow=False)
-                #     gretting_gTTS.save("Grettings.mp3")
-                #     os.system("mpg321 Grettings.mp3")
+                # send_text_class_object = SendText(send_to, sent_from, "There's " + str(name) + " at your door")
+                # send_text_class_object._send()
+                # time.sleep(300)
+                if str(name) == "Aakhtarr zaman":
+                    bengali_gretting = "কিতা খবর" + str(name) + "বালা আছ নি"
+                    gretting_gTTS = gTTS(text=bengali_gretting, lang='bn', slow=False)
+                    gretting_gTTS.save("Bengali_Grettings.mp3")
+                    os.system("mpg321 Bengali_Grettings.mp3")
+                else:
+                    gretting = "What's up" + str(name) + "How are you doing today?"
+                    gretting_gTTS = gTTS(text=gretting, lang=language, slow=False)
+                    gretting_gTTS.save("Grettings.mp3")
+                    os.system("mpg321 Grettings.mp3")
 
             face_names.append(name)
 
